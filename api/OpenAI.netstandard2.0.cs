@@ -32,6 +32,7 @@ namespace OpenAI {
         public virtual OpenAIModelClient GetOpenAIModelClient();
         public virtual RealtimeClient GetRealtimeClient();
         public virtual ResponsesClient GetResponsesClient();
+        public virtual SkillClient GetSkillClient();
         public virtual VectorStoreClient GetVectorStoreClient();
         public virtual VideoClient GetVideoClient();
     }
@@ -73,6 +74,7 @@ namespace OpenAI {
         public static IClientBuilder AddKeyedOpenAIModelClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string serviceKey, string sectionName);
         public static IClientBuilder AddKeyedRealtimeClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string serviceKey, string sectionName);
         public static IClientBuilder AddKeyedResponsesClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string serviceKey, string sectionName);
+        public static IClientBuilder AddKeyedSkillClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string serviceKey, string sectionName);
         public static IClientBuilder AddKeyedVectorStoreClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string serviceKey, string sectionName);
         public static IClientBuilder AddKeyedVideoClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string serviceKey, string sectionName);
         public static IClientBuilder AddModerationClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string sectionName);
@@ -80,6 +82,7 @@ namespace OpenAI {
         public static IClientBuilder AddOpenAIModelClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string sectionName);
         public static IClientBuilder AddRealtimeClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string sectionName);
         public static IClientBuilder AddResponsesClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string sectionName);
+        public static IClientBuilder AddSkillClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string sectionName);
         public static IClientBuilder AddVectorStoreClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string sectionName);
         public static IClientBuilder AddVideoClient(this Microsoft.Extensions.Hosting.IHostApplicationBuilder builder, string sectionName);
     }
@@ -5991,6 +5994,46 @@ namespace OpenAI.Responses {
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ref JsonPatch Patch { get; }
         public static WebSearchToolApproximateLocation CreateApproximateLocation(string country = null, string region = null, string city = null, string timezone = null);
+    }
+}
+namespace OpenAI.Skills {
+    public class SkillClient {
+        protected SkillClient();
+        public SkillClient(SkillClientSettings settings);
+        public SkillClient(ApiKeyCredential credential, OpenAIClientOptions options);
+        public SkillClient(ApiKeyCredential credential);
+        public SkillClient(AuthenticationPolicy authenticationPolicy, OpenAIClientOptions options);
+        public SkillClient(AuthenticationPolicy authenticationPolicy);
+        protected internal SkillClient(ClientPipeline pipeline, OpenAIClientOptions options);
+        public SkillClient(string apiKey);
+        public Uri Endpoint { get; }
+        public ClientPipeline Pipeline { get; }
+        public virtual ClientResult CreateSkill(BinaryContent content, string contentType, RequestOptions options = null);
+        public virtual Task<ClientResult> CreateSkillAsync(BinaryContent content, string contentType, RequestOptions options = null);
+        public virtual ClientResult CreateSkillVersion(string skillId, BinaryContent content, string contentType, RequestOptions options = null);
+        public virtual Task<ClientResult> CreateSkillVersionAsync(string skillId, BinaryContent content, string contentType, RequestOptions options = null);
+        public virtual ClientResult DeleteSkill(string skillId, RequestOptions options = null);
+        public virtual Task<ClientResult> DeleteSkillAsync(string skillId, RequestOptions options = null);
+        public virtual ClientResult DeleteSkillVersion(string skillId, string version, RequestOptions options = null);
+        public virtual Task<ClientResult> DeleteSkillVersionAsync(string skillId, string version, RequestOptions options = null);
+        public virtual ClientResult DownloadSkillVersionContent(string skillId, string version, RequestOptions options = null);
+        public virtual Task<ClientResult> DownloadSkillVersionContentAsync(string skillId, string version, RequestOptions options = null);
+        public virtual ClientResult GetSkill(string skillId, RequestOptions options = null);
+        public virtual Task<ClientResult> GetSkillAsync(string skillId, RequestOptions options = null);
+        public virtual ClientResult GetSkillContent(string skillId, RequestOptions options = null);
+        public virtual Task<ClientResult> GetSkillContentAsync(string skillId, RequestOptions options = null);
+        public virtual ClientResult GetSkills(int? limit = null, string order = null, string after = null, RequestOptions options = null);
+        public virtual Task<ClientResult> GetSkillsAsync(int? limit = null, string order = null, string after = null, RequestOptions options = null);
+        public virtual ClientResult GetSkillVersion(string skillId, string version, RequestOptions options = null);
+        public virtual Task<ClientResult> GetSkillVersionAsync(string skillId, string version, RequestOptions options = null);
+        public virtual ClientResult GetSkillVersions(string skillId, int? limit = null, string order = null, string after = null, RequestOptions options = null);
+        public virtual Task<ClientResult> GetSkillVersionsAsync(string skillId, int? limit = null, string order = null, string after = null, RequestOptions options = null);
+        public virtual ClientResult UpdateSkill(string skillId, string contentType, BinaryContent content, RequestOptions options = null);
+        public virtual Task<ClientResult> UpdateSkillAsync(string skillId, string contentType, BinaryContent content, RequestOptions options = null);
+    }
+    public sealed class SkillClientSettings : ClientSettings {
+        public OpenAIClientOptions Options { get; set; }
+        protected override void BindCore(Microsoft.Extensions.Configuration.IConfigurationSection section);
     }
 }
 namespace OpenAI.VectorStores {
