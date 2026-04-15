@@ -546,6 +546,8 @@ namespace OpenAI
     [ModelReaderWriterBuildable(typeof(InternalUpdateVectorStoreFileAttributesRequest))]
     [ModelReaderWriterBuildable(typeof(InternalUpload))]
     [ModelReaderWriterBuildable(typeof(InternalUploadPart))]
+    [ModelReaderWriterBuildable(typeof(InternalVectorStoreComparisonFilter))]
+    [ModelReaderWriterBuildable(typeof(InternalVectorStoreCompoundFilter))]
     [ModelReaderWriterBuildable(typeof(InternalVectorStoreFileBatchObjectFileCounts))]
     [ModelReaderWriterBuildable(typeof(InternalVectorStoreFileContentResponse))]
     [ModelReaderWriterBuildable(typeof(InternalVectorStoreFileContentResponseDatum))]
